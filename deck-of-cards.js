@@ -46,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // add the card img to page
                 const img = document.createElement('img');
                 img.src = response.cards[0].image;
+                img.style.transform = `rotate(${Math.floor(Math.random() * 45)}deg)`
+                img.style.left = (window.innerWidth / 2 - 136) + 'px';
                 document.getElementById('cards').appendChild(img);
             })
             .catch(err => {
