@@ -1,0 +1,24 @@
+{
+  "name": "async-unit",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/xmocxd/async-unit#readme",
+  "bugs": {
+    "url": "https://github.com/xmocxd/async-unit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xmocxd/async-unit.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "numbers.js",
+  "scripts": {
+    "start": "http-server -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
