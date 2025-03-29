@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function getNumFacts(p) {
         let numbers = p.match(/[0-9]+/g);
         let quantity = (/--requests\s+[0-9]+/.test(p)) ? p.match(/--requests\s+([0-9]+)/)[1] : 1;
-        console.log(quantity);
 
         if (numbers === null) { throw new Error('Must provide at least one number'); }
 
@@ -55,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // dedupe
                 facts[numbers[0]] = f.filter((v, i, self) => { return self.indexOf(v) === i });
             } else {
-                for (num of numbers) {
+                for (const num of numbers) {
                     facts[num] = [];
                     const f = values.map(v => v[num]);
                     // dedupe
@@ -65,7 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             outputMessage = {'reqNumbers': numbers, facts};
 
-            output.innerHTML += `<p class="response">Response: ${JSON.stringify(outputMessage)}</p>`;
+            output.innerHTML += `<p class="response">Requesting ${quantity} facts for the numbers ${numbers.join(', ')} (deduped)...</p><p>&nbsp;</p>`;
+            for (const key in facts) {
+                let html = '';
+                html += `<p class="response">Facts for ${key}:</p>`;
+                html += `<p class="response">${facts[key].join(' ')}</p>`
+                html += '<p>&nbsp;</p>';
+                output.innerHTML += html;
+            }
         });
     }
 
