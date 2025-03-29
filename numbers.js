@@ -35,9 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function getNumFacts(p) {
-        let numbers = p.match(/[0-9]+/g);
-        let quantity = (/--requests\s+[0-9]+/.test(p)) ? p.match(/--requests\s+([0-9]+)/)[1] : 1;
+        const reqRegex = /(--requests|-r)\s+([0-9]+)/;
+        let quantity;
+        if (reqRegex.test(p)) {
+            quantity = p.match(reqRegex)[2];
+            p = p.replace(reqRegex, '');
+        } else {
+            quantity = 1;
+        }
 
+        const numbers = p.match(/[0-9]+/g);
+        
         if (numbers === null) { throw new Error('Must provide at least one number'); }
 
         const facts = {};
