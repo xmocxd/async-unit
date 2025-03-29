@@ -18,13 +18,19 @@
         color: rgb(32, 200, 230);
         font: 14px monospace;
     }
+
+    #cards {
+        padding: 20px;
+    }
 </style>
 
 <html>
     <body>
         <div class="ui">
-            <input type="button" id="drawCard" value="Draw a Card">
+            <input type="button" id="drawCard" value="Draw a Card" disabled>
+            <div id="cards"></div>
             <p>(Deck ID: <span id="deckID"></span> )</p>
+            <p id="drawn"></p>
         </div>
       </body>
 </html>

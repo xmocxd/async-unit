@@ -14,12 +14,44 @@ a new card, until there are no cards left in the deck.
 
 */
 
+// doing everything in one
+
 document.addEventListener('DOMContentLoaded', () => {
     let deck;
-    fetch('https://deckofcardsapi.com/api/deck/new/')
+    const drawn = document.getElementById('drawn');
+
+    fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
         .then(response => response.json())
         .then(response => {
             deck = response.deck_id;
             document.getElementById('deckID').innerHTML = deck;
+            document.getElementById('drawCard').removeAttribute('disabled'); // prevents drawing a card until the deck is returned
         });
+
+    document.getElementById('drawCard').addEventListener('click', () => {
+        fetch(`https://deckofcardsapi.com/api/deck/${deck}/draw/?count=1`)
+            .then(response => response.json())
+            .then(response => {
+                // if the deck runs out of cards, json returns a response with success = false
+                if (!response.success) {
+                    throw new Error(response.error);
+                }
+
+                // log and print the card
+                const {value, suit} = response.cards[0];
+                const r = `${value} of ${suit}`;
+                console.log(r);
+                drawn.innerHTML = 'Drew ' + r;
+
+                // add the card img to page
+                const img = document.createElement('img');
+                img.src = response.cards[0].image;
+                document.getElementById('cards').appendChild(img);
+            })
+            .catch(err => {
+                console.log(err);
+                drawn.innerHTML = '' + err;
+            });
+            
+    });
 });
