@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<style>
+    * { box-sizing: border-box; }
+
+    body {
+        background-color: black;
+        color: rgb(32, 200, 230);
+        font: 14px monospace;
+    }
+
+    .ui {
+        text-align: center;
+    }
+
+    .ui button {
+        background-color: rgb(59, 59, 59);
+        color: rgb(32, 200, 230);
+        font: 14px monospace;
+    }
+</style>
+
+<html>
+    <body>
+        <div class="ui">
+            <input type="button" id="drawCard" value="Draw a Card">
+            <p>(Deck ID: <span id="deckID"></span> )</p>
+        </div>
+      </body>
+</html>
+
+<script src="deck-of-cards.js"></script>
