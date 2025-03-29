@@ -26,14 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Enter' && p !== '') {
             output.innerHTML += `<p>${p}</p>`;
             prompt.value = '';
-            getNumFacts(p);
+            try {
+                getNumFacts(p);
+            } catch (err) {
+                output.innerHTML += `<p>${err}</p>`;
+            }
         }
     });
 
     function getNumFacts(p) {
         let numbers = p.match(/[0-9]+/g);
-        console.log(numbers);
-        let quantity = 1;
+        let quantity = (/--requests\s+[0-9]+/.test(p)) ? p.match(/--requests\s+([0-9]+)/)[1] : 1;
+        console.log(quantity);
+
+        if (numbers === null) { throw new Error('Must provide at least one number'); }
 
         const facts = {};
         const requests = [];

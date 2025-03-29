@@ -3,6 +3,12 @@
 <style>
     * { box-sizing: border-box; }
 
+    body {
+        background-color: black;
+        color: rgb(32, 200, 230);
+        font: 14px monospace;
+    }
+
     .terminal {
         width: 600px;
         background-color: rgb(46, 46, 46);
@@ -47,6 +53,8 @@
             <div id="output"></div>
             <input type="text" id="prompt">
         </div>
+        <p>Get facts about numbers from numbersapi.com</p>
+        <p>Syntax: &lt;any collection of numbers&gt; (optional: --requests &lt;number of fact requests per number&gt;, default=1)</p>
     </body>
 </html>
 
